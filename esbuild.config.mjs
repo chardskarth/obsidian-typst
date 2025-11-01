@@ -84,7 +84,7 @@ async function buildWorker(workerPath) {
     minify: true,
     outfile: bundlePath,
     target: 'es2020',
-    format: 'esm',
+    format: 'cjs',
   });
 
   return fs.promises.readFile(bundlePath, {encoding: 'utf-8'});
@@ -112,7 +112,7 @@ const context = await esbuild.context({
         "@lezer/highlight",
         "@lezer/lr",
         ...builtins],
-    format: "esm",
+    format: "cjs",
     target: "es2020",
     logLevel: "info",
     sourcemap: prod ? false : "inline",
@@ -124,7 +124,10 @@ const context = await esbuild.context({
     plugins: [
         inlineWorkerPlugin,
         wasmPlugin
-    ]
+    ],
+	supported: {
+		'import-meta': true
+	}
 })
 
 await context.rebuild();
