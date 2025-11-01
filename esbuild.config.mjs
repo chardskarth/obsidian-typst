@@ -83,8 +83,8 @@ async function buildWorker(workerPath) {
     bundle: true,
     minify: true,
     outfile: bundlePath,
-    target: 'es2018',
-    format: 'cjs',
+    target: 'es2020',
+    format: 'esm',
   });
 
   return fs.promises.readFile(bundlePath, {encoding: 'utf-8'});
@@ -112,8 +112,8 @@ const context = await esbuild.context({
         "@lezer/highlight",
         "@lezer/lr",
         ...builtins],
-    format: "cjs",
-    target: "es2018",
+    format: "esm",
+    target: "es2020",
     logLevel: "info",
     sourcemap: prod ? false : "inline",
     treeShaking: true,
