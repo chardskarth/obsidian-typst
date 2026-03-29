@@ -124,7 +124,10 @@ const context = await esbuild.context({
 	plugins: [
 		inlineWorkerPlugin,
 		wasmPlugin
-	]
+	],
+	supported: {
+		'import-meta': true
+	}
 
 })
 
