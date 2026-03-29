@@ -72,7 +72,7 @@ onmessage = (ev: MessageEvent<Message>) => {
         case "compile":
             if (message.data.format == "image") {
                 const data: CompileImageCommand = message.data;
-                postMessage(compiler.compile_image(data.source, data.path, data.pixel_per_pt, data.fill, data.size, data.display))
+                postMessage(compiler.compile_image(data.source, data.path, data.pixel_per_pt, data.size, data.display))
             } else if (message.data.format == "svg") {
                 postMessage(compiler.compile_svg(message.data.source, message.data.path))
             }
