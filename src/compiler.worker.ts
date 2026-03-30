@@ -59,7 +59,7 @@ onmessage = (ev: MessageEvent<Message>) => {
             canUseSharedArrayBuffer = message.data
             break;
         case "startup":
-            typstInit(message.data.wasm).then(_ => {
+            typstInit({module_or_path: message.data.wasm}).then(_ => {
                 compiler = new typst.Compiler("", requestData)
                 console.log("Typst web assembly loaded!");
             })

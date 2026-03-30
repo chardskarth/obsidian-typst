@@ -3,6 +3,10 @@ export default class TypstRenderElement extends HTMLElement {
     static nextId = 0;
     static prevHeight = 0;
 
+    constructor() {
+        super();
+    }
+
     // The Element's Id
     id: string
     // The number in the element's id.
@@ -20,6 +24,12 @@ export default class TypstRenderElement extends HTMLElement {
     canvas: HTMLCanvasElement
 
     async connectedCallback() {
+        this.format = this.getAttribute('data-format') || "";
+        this.source = this.getAttribute('data-source') || "";
+        this.path = this.getAttribute('data-path') || "";
+        this.display = (this.getAttribute('data-display') || "") === "true";
+        this.math = (this.getAttribute('data-math') || "") === "true";
+
         if (!this.isConnected) {
             console.warn("Typst Renderer: Canvas element has been called before connection");
             return;
