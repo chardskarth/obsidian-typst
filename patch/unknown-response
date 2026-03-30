@@ -1,4 +1,0 @@
-sed -i '' '323c\
-if (module.constructor.name === "Response" || (typeof Response === "function" && module instanceof Response)) {\
-' pkg/obsidian_typst.js
-
