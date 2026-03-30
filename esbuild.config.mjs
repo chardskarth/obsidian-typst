@@ -78,53 +78,53 @@ async function buildWorker(workerPath) {
   let scriptName = scriptNameParts.join('.');
   let bundlePath = path.resolve(cacheDir, scriptName);
 
-  await esbuild.build({
-    entryPoints: [workerPath],
-    bundle: true,
-    minify: true,
-    outfile: bundlePath,
-    target: 'es2020',
-    format: 'cjs',
-  });
+	await esbuild.build({
+		entryPoints: [workerPath],
+		bundle: true,
+		minify: true,
+		outfile: bundlePath,
+		target: 'es2020',
+		format: 'cjs',
+	});
 
   return fs.promises.readFile(bundlePath, {encoding: 'utf-8'});
 }
 
 
 const context = await esbuild.context({
-    banner: {
-        js: banner,
-    },
-    entryPoints: ["src/main.ts"],
-    bundle: true,
-    external: [
-        "obsidian",
-        "electron",
-        "@codemirror/autocomplete",
-        "@codemirror/collab",
-        "@codemirror/commands",
-        "@codemirror/language",
-        "@codemirror/lint",
-        "@codemirror/search",
-        "@codemirror/state",
-        "@codemirror/view",
-        "@lezer/common",
-        "@lezer/highlight",
-        "@lezer/lr",
-        ...builtins],
-    format: "cjs",
-    target: "es2020",
-    logLevel: "info",
-    sourcemap: prod ? false : "inline",
-    treeShaking: true,
-    outfile: "main.js",
-    define: {
-        PLUGIN_VERSION: JSON.stringify(process.env.npm_package_version)
-    },
-    plugins: [
-        inlineWorkerPlugin,
-        wasmPlugin
-    ],
+	banner: {
+		js: banner,
+	},
+	entryPoints: ["src/main.ts"],
+	bundle: true,
+	external: [
+		"obsidian",
+		"electron",
+		"@codemirror/autocomplete",
+		"@codemirror/collab",
+		"@codemirror/commands",
+		"@codemirror/language",
+		"@codemirror/lint",
+		"@codemirror/search",
+		"@codemirror/state",
+		"@codemirror/view",
+		"@lezer/common",
+		"@lezer/highlight",
+		"@lezer/lr",
+		...builtins],
+	format: "cjs",
+	target: "es2020",
+	logLevel: "info",
+	sourcemap: prod ? false : "inline",
+	treeShaking: true,
+	outfile: "main.js",
+	define: {
+		PLUGIN_VERSION: JSON.stringify(process.env.npm_package_version)
+	},
+	plugins: [
+		inlineWorkerPlugin,
+		wasmPlugin
+	],
 	supported: {
 		'import-meta': true
 	}
