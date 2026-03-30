@@ -1,4 +1,9 @@
 export default class TypstRenderElement extends HTMLElement {
+
+	constructor() {
+		super();
+	}
+
 	static compile: (path: string, source: string, size: number, display: boolean, fontSize: number) => Promise<ImageData | string>;
 	static nextId = 0;
 	static prevHeight = 0;
@@ -104,6 +109,7 @@ export default class TypstRenderElement extends HTMLElement {
 			})
 
 		} catch (error) {
+			// signal gets aborted normally.. no need to log
 			return
 		}
 	}
