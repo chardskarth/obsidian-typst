@@ -59,7 +59,6 @@ onmessage = (ev: MessageEvent<Message>) => {
             canUseSharedArrayBuffer = message.data
             break;
         case "startup":
-			console.log("startup called")
             typstInit({module_or_path: message.data.wasm}).then(_ => {
                 compiler = new typst.Compiler("", requestData)
                 console.log("Typst web assembly loaded!");
@@ -86,5 +85,4 @@ onmessage = (ev: MessageEvent<Message>) => {
     }
 }
 
-console.log("Test");
 console.log("Typst compiler worker loaded!");

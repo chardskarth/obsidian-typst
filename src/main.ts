@@ -421,20 +421,13 @@ export default class TypstPlugin extends Plugin {
 	}
 
 	createTypstRenderElement(path: string, source: string, display: boolean, math: boolean) {
-		//let renderer = new TypstRenderElement();
-		// renderer.format = this.settings.format
-		// renderer.source = source
-		// renderer.path = path
-		// renderer.display = display
-		// renderer.math = math
-		// return renderer
-
 		let renderer = document.createElement('typst-renderer');
 		renderer.setAttribute('data-format', this.settings.format);
 		renderer.setAttribute('data-source', source);
 		renderer.setAttribute('data-path', path);
 		renderer.setAttribute('data-display', display.toString());
 		renderer.setAttribute('data-math', math.toString());
+
 		return renderer
 	}
 
